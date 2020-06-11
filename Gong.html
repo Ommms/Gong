@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <title> Keat </title>
+    </head>
+    
+    <style>
+        *{padding: 0; margin: 0;}
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #241c7c;
+        }
+        div{
+            width: 15%;
+        }
+        div:active{
+            transition-duration: 3s;
+        }
+        img{
+            width: 100%;
+            height: 15%;
+        }
+        h1{
+            color: white;
+            font-size: 100px;
+            text-align: center;
+        }
+        .victory{
+            display: none;
+        }
+        section{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        h2{
+            color: white;
+            text-align: center;
+        }
+
+    </style>
+    
+    <body>
+        
+        <h1 class="victory">승리!</h1>
+        <h2>1레벨</h2>
+
+        <section>
+        <div>
+        <img src="%EB%8B%AC%EB%8B%98%EC%9D%B4.png">
+        </div>  
+        </section>  
+            
+        <script>
+            var check=0;
+            var check2=0;
+            var speed=1;
+            
+            curWidth = document.body.clientWidth;
+            curHeight = document.body.clientHeight;
+            
+            dix = $('div').css('width');
+            dix = parseInt(dix);
+           
+            x= $('div').css('margin-left');
+            x=parseInt(x); 
+            
+            y=$('div').css('margin-top');
+            y=parseInt(y);
+                
+            
+            function right(){
+                if(check==0){
+                x+=speed;       
+                    if(x>curWidth-dix){
+                        check=1;
+                    }
+              }
+                
+               else{   
+                x-=speed;   
+                   if(x<0){
+                       check=0;
+                   }
+              }
+                
+                if(check2==0){
+                    y+=speed;
+                    if(y>curHeight-dix){
+                        check2=1;
+                    }    
+                }
+                else{
+                    y-=speed;
+                    if(y<0){
+                        check2=0;
+                    }
+                }
+             
+                $('div').css('margin-left',x+'px');
+                $('div').css('margin-top',y+'px');
+            }
+            
+            $('div').click(function(){
+                speed+=1;
+                $('h2').text(speed+'레벨');
+            })
+            
+            if(speed<100){
+                setInterval(right,10);
+            }
+            else{
+                $('h1').removeClass("victory");
+            }
+           
+       
+        </script>
+   
+    </body>
+</html>
